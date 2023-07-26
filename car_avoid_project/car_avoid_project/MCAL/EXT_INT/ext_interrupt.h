@@ -3,7 +3,9 @@
 #define MCAL_EXTERNAL_INT_H_
 
 /*===============FILE ENCLUTION ================*/
-#
+#include "..\..\Utilities\Std_Types.h"
+#include "..\..\Utilities\registers.h"
+#include "..\..\Utilities\Common_Macros.h"
 /*===============EXTERNAL VARIBALS ================*/
 
 /*===============MACROS DEFINTION ================*/

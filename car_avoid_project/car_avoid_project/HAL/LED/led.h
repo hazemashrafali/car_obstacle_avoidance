@@ -10,7 +10,7 @@
 
 
 /*============= FILE INCLUSION =============*/
-#include "..\..\MCAL\gpio\gpio.h"
+#include "..\..\MCAL\DIO\gpio.h"
 
 /*============= TYPE DEFINITION =============*/
 
