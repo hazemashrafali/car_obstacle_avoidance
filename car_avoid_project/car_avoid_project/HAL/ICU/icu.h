@@ -10,10 +10,8 @@
 #define ICU_H_
 
 /*===============FILE ENCLUTION ================*/
-#include "..\..\Utilities\Std_Types.h"
-#include "..\..\Utilities\registers.h"
-#include "..\..\Utilities\Common_Macros.h"
 #include "..\..\MCAL\EXT_INT\ext_interrupt.h"
+
 /*===============EXTERNAL VARIBALS ================*/
 
 /*===============MACROS DEFINTION ================*/
@@ -34,7 +32,7 @@ typedef enum
 {
 	ENU_ICU_FALLING			= 0 ,
 	ENU_ICU_RISING			= 1 ,
-	ENU_ICU_MAX_EDGETYP		= 2
+	ENU_ICU_MAX_EDGETYPE	= 2
 }enu_icu_edgetype_t;
 
 typedef enum
@@ -55,7 +53,6 @@ typedef enum
 	ENU_TIMER_MAX_CHANNEL		= 3
 }enu_timer_channel_id_t;
 
-
 typedef enum
 {
 	ENU_ICU_CHANNEL_ID0		= 0 ,
@@ -74,91 +71,83 @@ typedef struct
 
 /*===============GLOBAL VARIBALS ================*/
 
-
 /*=========================APIS=========================*/
 
 /**
- * @brief       DIO_pinMode                 : function to init interrupt id and interrupt edge type and timer id and clock
+ * @brief       Icu_init					: function used to initialize interrupt id , interrupt edge type , timer id and timer clock
  *
- * @param[in]   port						:	
- * @param[in]   pin							:
- * @param[in]   direction					:	
+ * @param[in]   Config_Ptr					: pointer to structure of type enu_icu_configtype_t	
  *
- * @return      VALID_OPERATION				:   
- *              INVALID_PORT_ID 			:   
- *				INVALID_PIN_ID				:
- *				INVALID_DIRECTION			:	
+ * @return      ENU_ICU_INVALID_EDGETYP		: in case of invalid interrupt edge type
+ *              ENU_ICU_INVALID_CLOCK 		: in case of invalid timer clock 
+ *				ENU_ICU_INVALID_INPUT		: in case of invalid passing argument Ex. timer channel id - null pointer - value out of range
+ *				ENU_ICU_INVALID_CHANNEL		: in case of invalid interrupt channel id
+ *				ENU_ICU_VALID				: in case of valid operation
  */
 enu_icu_error_t Icu_init(const enu_icu_configtype_t * Config_Ptr);
 
-
 /**
- * @brief       DIO_pinMode                 :
+ * @brief       Icu_setCallBack				: function used to set ICU callback function
  *
- * @param[in]   port						:	
- * @param[in]   pin							:
- * @param[in]   direction					:	
+ * @param[in]   a_ptr						: pointer to function take void and return void
  *
- * @return      VALID_OPERATION				:   
- *              INVALID_PORT_ID 			:   
- *				INVALID_PIN_ID				:
- *				INVALID_DIRECTION			:	
+ * @return      ENU_ICU_INVALID_EDGETYP		: in case of invalid interrupt edge type
+ *              ENU_ICU_INVALID_CLOCK 		: in case of invalid timer clock 
+ *				ENU_ICU_INVALID_INPUT		: in case of invalid passing argument Ex. timer channel id - null pointer - value out of range
+ *				ENU_ICU_INVALID_CHANNEL		: in case of invalid interrupt channel id
+ *				ENU_ICU_VALID				: in case of valid operation
  */
 enu_icu_error_t Icu_setCallBack(void(*a_ptr)(void));
 
 /**
- * @brief       DIO_pinMode                 :
+ * @brief       Icu_setEdgeDetectionType	: function used to set/change ICU edge detection type 
  *
- * @param[in]   port						:	
- * @param[in]   pin							:
- * @param[in]   direction					:	
+ * @param[in]   enu_icu_edgetype			: `ICU edge type it should be [ENU_ICU_FALLING,ENU_ICU_RISING] 
  *
- * @return      VALID_OPERATION				:   
- *              INVALID_PORT_ID 			:   
- *				INVALID_PIN_ID				:
- *				INVALID_DIRECTION			:	
+ * @return      ENU_ICU_INVALID_EDGETYP		: in case of invalid interrupt edge type
+ *              ENU_ICU_INVALID_CLOCK 		: in case of invalid timer clock 
+ *				ENU_ICU_INVALID_INPUT		: in case of invalid passing argument Ex. timer channel id - null pointer - value out of range
+ *				ENU_ICU_INVALID_CHANNEL		: in case of invalid interrupt channel id
+ *				ENU_ICU_VALID				: in case of valid operation
  */
 enu_icu_error_t Icu_setEdgeDetectionType(const enu_icu_edgetype_t enu_icu_edgetype);
 
 /**
- * @brief       DIO_pinMode                 :
+ * @brief       Icu_getTimerValue			: function used to read timer value
  *
- * @param[in]   port						:	
- * @param[in]   pin							:
- * @param[in]   direction					:	
+ * @param[in]   u16_timer_value				: pointer to uint16 used to hold timer value
  *
- * @return      VALID_OPERATION				:   
- *              INVALID_PORT_ID 			:   
- *				INVALID_PIN_ID				:
- *				INVALID_DIRECTION			:	
+ * @return      ENU_ICU_INVALID_EDGETYP		: in case of invalid interrupt edge type
+ *              ENU_ICU_INVALID_CLOCK 		: in case of invalid timer clock 
+ *				ENU_ICU_INVALID_INPUT		: in case of invalid passing argument Ex. timer channel id - null pointer - value out of range
+ *				ENU_ICU_INVALID_CHANNEL		: in case of invalid interrupt channel id
+ *				ENU_ICU_VALID				: in case of valid operation
  */
 enu_icu_error_t Icu_getTimerValue(uint16* u16_timer_value);
 
 /**
- * @brief       DIO_pinMode                 :
+ * @brief       Icu_clearTimerValue			: function used to clear timer value
  *
- * @param[in]   port						:	
- * @param[in]   pin							:
- * @param[in]   direction					:	
+ * @param[in]   void						:
  *
- * @return      VALID_OPERATION				:   
- *              INVALID_PORT_ID 			:   
- *				INVALID_PIN_ID				:
- *				INVALID_DIRECTION			:	
+ * @return      ENU_ICU_INVALID_EDGETYP		: in case of invalid interrupt edge type
+ *              ENU_ICU_INVALID_CLOCK 		: in case of invalid timer clock 
+ *				ENU_ICU_INVALID_INPUT		: in case of invalid passing argument Ex. timer channel id - null pointer - value out of range
+ *				ENU_ICU_INVALID_CHANNEL		: in case of invalid interrupt channel id
+ *				ENU_ICU_VALID				: in case of valid operation
  */
 enu_icu_error_t Icu_clearTimerValue(void);
 
 /**
- * @brief       DIO_pinMode                 :
+ * @brief       Icu_DeInit					: function used to de_initialize the ICU
  *
- * @param[in]   port						:	
- * @param[in]   pin							:
- * @param[in]   direction					:	
+ * @param[in]   void						:
  *
- * @return      VALID_OPERATION				:   
- *              INVALID_PORT_ID 			:   
- *				INVALID_PIN_ID				:
- *				INVALID_DIRECTION			:	
+ * @return      ENU_ICU_INVALID_EDGETYP		: in case of invalid interrupt edge type
+ *              ENU_ICU_INVALID_CLOCK 		: in case of invalid timer clock 
+ *				ENU_ICU_INVALID_INPUT		: in case of invalid passing argument Ex. timer channel id - null pointer - value out of range
+ *				ENU_ICU_INVALID_CHANNEL		: in case of invalid interrupt channel id
+ *				ENU_ICU_VALID				: in case of valid operation
  */
 void Icu_DeInit(void);
 
