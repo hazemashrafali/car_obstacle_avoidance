@@ -178,6 +178,12 @@
     <Compile Include="HAL\PWM\pwm.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="HAL\TMR_SERVICES\tmr_services.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\TMR_SERVICES\tmr_services.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="HAL\ULTRSONIC\ultrasonic.c">
       <SubType>compile</SubType>
     </Compile>
@@ -205,10 +211,16 @@
     <Compile Include="MCAL\GLOBAL_INT\global_int.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="MCAL\TIMER\timer.c">
+    <Compile Include="MCAL\TIMER\timer_interface.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="MCAL\TIMER\timer.h">
+    <Compile Include="MCAL\TIMER\timer_interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\TIMER\timer_utilities.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\TIMER\timer_utilities.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Utilities\Common_Macros.h">
@@ -228,6 +240,7 @@
     <Folder Include="HAL\LCD" />
     <Folder Include="HAL\DC_MOTOR" />
     <Folder Include="HAL\ICU" />
+    <Folder Include="HAL\TMR_SERVICES" />
     <Folder Include="HAL\ULTRSONIC" />
     <Folder Include="HAL\PWM" />
     <Folder Include="MCAL" />

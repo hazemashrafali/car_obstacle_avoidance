@@ -23,7 +23,7 @@
 
 /*===============GLOBAL VARIBALS ================*/
 uint8 gl_u8_interrupt_id	= MAX_INTERRUPT_CHANNEL ;
-uint8 gl_u8_interrupt_id	= MAX_TIMER_CHANNEL;
+uint8 gl_u8_timer_id		= MAX_TIMER_CHANNEL;
 
 /*=========================APIS=========================*/
 

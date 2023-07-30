@@ -16,7 +16,11 @@
 /*===============EXTERNAL VARIBALS ================*/
 
 /*===============MACROS DEFINTION ================*/
-
+#define MAX_8_BIT_COUNT		256
+#define MAX_16_BIT_COUNT	65535
+#define ZERO_VALUE			0
+#define LOGIC_TRUE			1
+#define LOGIC_FALSE			0
 /*===============TYBS DEFINTION ================*/
 typedef enum
 {
@@ -37,7 +41,7 @@ typedef enum
 {
 	ENU_TMR_INT_ENABLE	= 0,
 	ENU_TMR_INT_DISABLE	= 1,
-	ENU_MAX_TMR_STATE		= 2
+	ENU_MAX_TMR_STATE	= 2
 }enu_tmr_interrupt_state_t;
 
 typedef enum
@@ -56,11 +60,12 @@ typedef enum
 	ENU_TMR_CLK_8			= 2,
 	ENU_TMR_CLK_32			= 3,
 	ENU_TMR_CLK_64			= 4,
-	ENU_TMR_CLK_256			= 5,
-	ENU_TMR_CLK_1024		= 6,
-	ENU_TMR_CLK_EXT_FALLING	= 7,
-	ENU_TMR_CLK_EXT_RISING	= 8,
-	ENU_TMR_MAX_CLK			= 9 
+	ENU_TMR_CLK_128			= 5,
+	ENU_TMR_CLK_256			= 6,
+	ENU_TMR_CLK_1024		= 7,
+	ENU_TMR_CLK_EXT_FALLING	= 8,
+	ENU_TMR_CLK_EXT_RISING	= 9,
+	ENU_TMR_MAX_CLK			= 10 
 }enu_tmr_clk_t;
 
 typedef struct
@@ -84,7 +89,9 @@ typedef enum
 	ENU_TMR_INVALID_CLK			= 4,
 	ENU_TMR_INVALID_INPUT		= 5,
 	ENU_TMR_VALID				= 6,
-	ENU_TMR_MAX_ERROR			= 7
+	ENU_TMR_ALREADY_INITIALIZED	= 7,
+	ENU_TMR_NOT_INITIALIZED		= 8,
+	ENU_TMR_MAX_ERROR			= 9
 }enu_tmr_error_t;
 
 /*===============GLOBAL VARIBALS ================*/
@@ -232,7 +239,7 @@ enu_tmr_error_t timer_getValue	(enu_tmr_channel_id_t enu_tmr_channel_id , uint16
  *				ENU_TMR_INVALID_INPUT		: in case of invalid passing argument Ex. timer channel id - null pointer - value out of range
  *				ENU_TMR_VALID				: in case of valid operation
  */
-enu_tmr_error_t timer_enableNotification	(enu_tmr_channel_id_t enu_tmr_channel_id,enu_tmr_mode_t enu_tmr_mode);
+enu_tmr_error_t timer_enableInterrupt	(enu_tmr_channel_id_t enu_tmr_channel_id,enu_tmr_mode_t enu_tmr_mode);
 
 /**
  * @brief       timer_disableNotification	: function used to disable timer interrupt source
@@ -248,7 +255,7 @@ enu_tmr_error_t timer_enableNotification	(enu_tmr_channel_id_t enu_tmr_channel_i
  *				ENU_TMR_INVALID_INPUT		: in case of invalid passing argument Ex. timer channel id - null pointer - value out of range
  *				ENU_TMR_VALID				: in case of valid operation
  */
-enu_tmr_error_t timer_disableNotification	(enu_tmr_channel_id_t enu_tmr_channel_id,enu_tmr_mode_t enu_tmr_mode);
+enu_tmr_error_t timer_disableInterrupt	(enu_tmr_channel_id_t enu_tmr_channel_id,enu_tmr_mode_t enu_tmr_mode);
 
 /**
  * @brief       timer_getStatus				: function used to get timer state if it is [ready - busy]
@@ -281,6 +288,23 @@ enu_tmr_error_t timer_getStatus	(enu_tmr_channel_id_t enu_tmr_channel_id,uint8* 
  */
 enu_tmr_error_t timer_deInit	(enu_tmr_channel_id_t enu_tmr_channel_id);
 
-
+/**
+ * @brief       timer_flag_notification		: function used to notify the upper layer when interrupt happen
+ *											  if [*ptr_u8_flag_status] = TRUE  >>> the interrupt happen then cleared
+ *											  if [*ptr_u8_flag_status] = FLASE >>> the interrupt does not happen
+ *
+ * @param[in]   enu_tmr_channel_id			: timer channel id, it should be [ENU_TMR_CHANNEL_0,ENU_TMR_CHANNEL_1,ENU_TMR_CHANNEL_2]
+ * @param[in]   enu_tmr_mode				: timer mode which refer to [normal - compare]
+ * @param[out]  ptr_u8_flag_status			: pointer to variable interrupt flag status
+ *
+ * @return      ENU_TMR_INVALID_ID			: in case of invalid interrupt edge type
+ *              ENU_TMR_INVALID_MODE 		: in case of invalid timer mode 
+ *				ENU_TMR_INVALID_INT_STATE	: in case of invalid timer interrupt state
+ *				ENU_TMR_INVALID_CMP_MODE	: in case of invalid compare mode
+ *				ENU_TMR_INVALID_CLK			: in case of invalid timer clock source
+ *				ENU_TMR_INVALID_INPUT		: in case of invalid passing argument Ex. timer channel id - null pointer - value out of range
+ *				ENU_TMR_VALID				: in case of valid operation
+ */
+enu_tmr_error_t timer_flag_notification	(enu_tmr_channel_id_t enu_tmr_channel_id,enu_tmr_mode_t enu_tmr_mode,uint8* ptr_u8_flag_status);
 
 #endif /* TIMER_INTERFACE_H_ */

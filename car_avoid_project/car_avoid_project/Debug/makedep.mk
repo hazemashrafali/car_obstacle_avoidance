@@ -26,5 +26,5 @@ MCAL\EXT_INT\ext_interrupt.c
 
 MCAL\GLOBAL_INT\global_int.c
 
-MCAL\TIMER\timer.c
+MCAL\TIMER\timer_interface.c
 
