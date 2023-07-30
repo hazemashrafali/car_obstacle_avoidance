@@ -18,6 +18,8 @@
 #define MAX_TMR_16_BIT_COUNT	65535
 #define MIN_TMR_COUNT			1
 #define INIT_VALUE(T_max,T_delay,tick)  (((float32)T_max-T_delay)/tick)
+#define MAX_DELAY_SEC(prescaler)		((((float32)prescaler/F_CPU)*MAX_COUNT))
+#define MIN_DELAY_SEC(prescaler)		((((float32)prescaler/F_CPU)*MIN_COUNT))
 #define MAX_DELAY_MS(prescaler)			((((float32)prescaler/F_CPU)*MAX_COUNT)*1000UL)
 #define MIN_DELAY_MS(prescaler)			((((float32)prescaler/F_CPU)*MIN_COUNT)*1000UL)
 #define MAX_DELAY_US(prescaler)			((((float32)prescaler/F_CPU)*MAX_COUNT)*1000000UL)

@@ -22,7 +22,7 @@ static volatile void (*gl_callBackPtr_timer2_COMP)(void) = NULL_PTR;
 /*===============EXTERNAL VARIBALS ================*/
 
 /*===============MACROS DEFINTION ================*/
-
+#define CLK_MASK_BIT 0xF8
 /*===============TYBS DEFINTION ================*/	
 
 /*===============FUNCTION DEFINITIONS ================*/
@@ -71,7 +71,7 @@ enu_tmr_error_t timer_init	(str_tmr_config_t* ptr_str_tmr_config)
 										// do nothing
 									}
 								} /*end Configure timer mode*/
-								//Configure OC PIN Mode
+								//Configure Output Compare PIN Mode
 								switch (ptr_str_tmr_config->enu_tmr_cmp_mode)
 								{
 									case ENU_TMR_CMP_DISCONNECT:
@@ -117,15 +117,16 @@ enu_tmr_error_t timer_init	(str_tmr_config_t* ptr_str_tmr_config)
 									{
 										if(ptr_str_tmr_config->enu_tmr_mode == ENU_TMR_NORMAL_MODE)
 										{
-											SET_BIT(TIMSK,TOIE0);
+											SET_BIT(TIMSK,TOIE0); // normal mode
 										}
 										else
 										{
-											SET_BIT(TIMSK,OCIE0);
+											SET_BIT(TIMSK,OCIE0); // compare mode
 										}
 									}
 									else
 									{
+										// disable timer interrupt mode
 										CLEAR_BIT(TIMSK,TOIE0);
 										CLEAR_BIT(TIMSK,OCIE0);
 									}/*end Set the interrupt configuration*/
@@ -133,8 +134,16 @@ enu_tmr_error_t timer_init	(str_tmr_config_t* ptr_str_tmr_config)
 									//Set The initial value,compare value
 									if ((ptr_str_tmr_config->u16_tmr_initial_value < MAX_8_BIT_COUNT) && (ptr_str_tmr_config->u16_tmr_compare_value < MAX_8_BIT_COUNT))
 									{
-										TCNT0 = ptr_str_tmr_config->u16_tmr_initial_value;
-										OCR0 = ptr_str_tmr_config->u16_tmr_compare_value;
+										if(ptr_str_tmr_config->enu_tmr_mode == ENU_TMR_NORMAL_MODE)
+										{
+											TCNT0 = ptr_str_tmr_config->u16_tmr_initial_value;
+											OCR0 = ZERO_VALUE;	
+										}
+										else
+										{
+											TCNT0 = ZERO_VALUE;
+											OCR0 = ptr_str_tmr_config->u16_tmr_compare_value;
+										}
 									}
 									else
 									{
@@ -239,8 +248,16 @@ enu_tmr_error_t timer_init	(str_tmr_config_t* ptr_str_tmr_config)
 									//Set The initial value,compare value
 									if ((ptr_str_tmr_config->u16_tmr_initial_value < MAX_16_BIT_COUNT) && (ptr_str_tmr_config->u16_tmr_compare_value < MAX_16_BIT_COUNT))
 									{
-										TCNT1 = ptr_str_tmr_config->u16_tmr_initial_value;
-										OCR1A = ptr_str_tmr_config->u16_tmr_compare_value; //to do handle OCB compare value
+										if(ptr_str_tmr_config->enu_tmr_mode == ENU_TMR_NORMAL_MODE)
+										{
+											TCNT1 = ptr_str_tmr_config->u16_tmr_initial_value;
+											OCR1A = ZERO_VALUE;	
+										}
+										else
+										{
+											TCNT1 = ZERO_VALUE;
+											OCR1A = ptr_str_tmr_config->u16_tmr_compare_value;
+										}
 									}
 									else
 									{
@@ -338,8 +355,16 @@ enu_tmr_error_t timer_init	(str_tmr_config_t* ptr_str_tmr_config)
 									//Set The initial value,compare value
 									if ((ptr_str_tmr_config->u16_tmr_initial_value < MAX_8_BIT_COUNT) && (ptr_str_tmr_config->u16_tmr_compare_value < MAX_8_BIT_COUNT))
 									{
-										TCNT2 = ptr_str_tmr_config->u16_tmr_initial_value;
-										OCR2 = ptr_str_tmr_config->u16_tmr_compare_value;
+										if(ptr_str_tmr_config->enu_tmr_mode == ENU_TMR_NORMAL_MODE)
+										{
+											TCNT2 = ptr_str_tmr_config->u16_tmr_initial_value;
+											OCR2 = ZERO_VALUE;	
+										}
+										else
+										{
+											TCNT2 = ZERO_VALUE;
+											OCR2 = ptr_str_tmr_config->u16_tmr_compare_value;
+										}								
 									}
 									else
 									{
@@ -700,14 +725,14 @@ enu_tmr_error_t timer_start	(enu_tmr_channel_id_t enu_tmr_channel_id)
 					{
 						switch (gl_enu_tmr_clk[ENU_TMR_CHANNEL_0])
 						{
-							case ENU_TMR_NO_CLK:			TCCR0 = ZERO_VALUE;							break;
-							case ENU_TMR_CLK_1:				TCCR0 = (1<<CS00);							break;
-							case ENU_TMR_CLK_8:				TCCR0 = (1<<CS01);							break;
-							case ENU_TMR_CLK_64:			TCCR0 = (1<<CS01)| (1<<CS00);				break;
-							case ENU_TMR_CLK_256:			TCCR0 = (1<<CS02);							break;
-							case ENU_TMR_CLK_1024:			TCCR0 = (1<<CS02)| (1<<CS00);				break;
-							case ENU_TMR_CLK_EXT_FALLING:	TCCR0 = (1<<CS02)| (1<<CS01);				break;
-							case ENU_TMR_CLK_EXT_RISING:	TCCR0 = (1<<CS02)| (1<<CS01)| (1<<CS00);	break;
+							case ENU_TMR_NO_CLK:			TCCR0 = (TCCR0 & CLK_MASK_BIT) | (ZERO_VALUE);							break;
+							case ENU_TMR_CLK_1:				TCCR0 = (TCCR0 & CLK_MASK_BIT) | (1<<CS00);								break;
+							case ENU_TMR_CLK_8:				TCCR0 = (TCCR0 & CLK_MASK_BIT) | (1<<CS01);								break;
+							case ENU_TMR_CLK_64:			TCCR0 = (TCCR0 & CLK_MASK_BIT) | (1<<CS01)| (1<<CS00);					break;
+							case ENU_TMR_CLK_256:			TCCR0 = (TCCR0 & CLK_MASK_BIT) | (1<<CS02);								break;
+							case ENU_TMR_CLK_1024:			TCCR0 = (TCCR0 & CLK_MASK_BIT) | (1<<CS02)| (1<<CS00);					break;
+							case ENU_TMR_CLK_EXT_FALLING:	TCCR0 = (TCCR0 & CLK_MASK_BIT) | (1<<CS02)| (1<<CS01);					break;
+							case ENU_TMR_CLK_EXT_RISING:	TCCR0 = (TCCR0 & CLK_MASK_BIT) | (1<<CS02)| (1<<CS01)| (1<<CS00);		break;
 							default: 
 							{
 								// do nothing
@@ -726,14 +751,14 @@ enu_tmr_error_t timer_start	(enu_tmr_channel_id_t enu_tmr_channel_id)
 					{
 						switch (gl_enu_tmr_clk[ENU_TMR_CHANNEL_1])
 						{
-							case ENU_TMR_NO_CLK:			TCCR1B = ZERO_VALUE;						break;
-							case ENU_TMR_CLK_1:				TCCR1B = (1<<CS10);							break;
-							case ENU_TMR_CLK_8:				TCCR1B = (1<<CS11);							break;
-							case ENU_TMR_CLK_64:			TCCR1B = (1<<CS11)| (1<<CS10);				break;
-							case ENU_TMR_CLK_256:			TCCR1B = (1<<CS12);							break;
-							case ENU_TMR_CLK_1024:			TCCR1B = (1<<CS12)| (1<<CS10);				break;
-							case ENU_TMR_CLK_EXT_FALLING:	TCCR1B = (1<<CS12)| (1<<CS11);				break;
-							case ENU_TMR_CLK_EXT_RISING:	TCCR1B = (1<<CS12)| (1<<CS11)| (1<<CS10);	break;
+							case ENU_TMR_NO_CLK:			TCCR1B = (TCCR1B & CLK_MASK_BIT) | ZERO_VALUE;						break;
+							case ENU_TMR_CLK_1:				TCCR1B = (TCCR1B & CLK_MASK_BIT) |(1<<CS10);						break;
+							case ENU_TMR_CLK_8:				TCCR1B = (TCCR1B & CLK_MASK_BIT) |(1<<CS11);						break;
+							case ENU_TMR_CLK_64:			TCCR1B = (TCCR1B & CLK_MASK_BIT) |(1<<CS11)| (1<<CS10);				break;
+							case ENU_TMR_CLK_256:			TCCR1B = (TCCR1B & CLK_MASK_BIT) |(1<<CS12);						break;
+							case ENU_TMR_CLK_1024:			TCCR1B = (TCCR1B & CLK_MASK_BIT) |(1<<CS12)| (1<<CS10);				break;
+							case ENU_TMR_CLK_EXT_FALLING:	TCCR1B = (TCCR1B & CLK_MASK_BIT) |(1<<CS12)| (1<<CS11);				break;
+							case ENU_TMR_CLK_EXT_RISING:	TCCR1B = (TCCR1B & CLK_MASK_BIT) |(1<<CS12)| (1<<CS11)| (1<<CS10);	break;
 							default: 
 							{
 								// do nothing
@@ -752,14 +777,14 @@ enu_tmr_error_t timer_start	(enu_tmr_channel_id_t enu_tmr_channel_id)
 					{
 						switch (gl_enu_tmr_clk[ENU_TMR_CHANNEL_2])
 						{
-							case ENU_TMR_NO_CLK:			TCCR2 = ZERO_VALUE;							break;
-							case ENU_TMR_CLK_1:				TCCR2 = (1<<CS20);							break;
-							case ENU_TMR_CLK_8:				TCCR2 = (1<<CS21);							break;
-							case ENU_TMR_CLK_32:			TCCR2 = (1<<CS21)| (1<<CS20);				break;
-							case ENU_TMR_CLK_64:			TCCR2 = (1<<CS22);							break;
-							case ENU_TMR_CLK_128:			TCCR2 = (1<<CS22)| (1<<CS20);				break;
-							case ENU_TMR_CLK_256:			TCCR2 = (1<<CS22)| (1<<CS21);				break;
-							case ENU_TMR_CLK_1024:			TCCR2 = (1<<CS22) | (1<<CS21)| (1<<CS20);	break;
+							case ENU_TMR_NO_CLK:			TCCR2 = (TCCR2 & CLK_MASK_BIT) |ZERO_VALUE;							break;
+							case ENU_TMR_CLK_1:				TCCR2 = (TCCR2 & CLK_MASK_BIT) |(1<<CS20);							break;
+							case ENU_TMR_CLK_8:				TCCR2 = (TCCR2 & CLK_MASK_BIT) |(1<<CS21);							break;
+							case ENU_TMR_CLK_32:			TCCR2 = (TCCR2 & CLK_MASK_BIT) |(1<<CS21)| (1<<CS20);				break;
+							case ENU_TMR_CLK_64:			TCCR2 = (TCCR2 & CLK_MASK_BIT) |(1<<CS22);							break;
+							case ENU_TMR_CLK_128:			TCCR2 = (TCCR2 & CLK_MASK_BIT) |(1<<CS22)| (1<<CS20);				break;
+							case ENU_TMR_CLK_256:			TCCR2 = (TCCR2 & CLK_MASK_BIT) |(1<<CS22)| (1<<CS21);				break;
+							case ENU_TMR_CLK_1024:			TCCR2 = (TCCR2 & CLK_MASK_BIT) |(1<<CS22) | (1<<CS21)| (1<<CS20);	break;
 							default:
 							{
 								//do nothing
@@ -802,9 +827,9 @@ enu_tmr_error_t timer_stop	(enu_tmr_channel_id_t enu_tmr_channel_id)
 		{
 			switch(enu_tmr_channel_id)
 			{
-				case ENU_TMR_CHANNEL_0:		TCCR0  = ZERO_VALUE;		break;
-				case ENU_TMR_CHANNEL_1:		TCCR1B = ZERO_VALUE;		break;
-				case ENU_TMR_CHANNEL_2:		TCCR2  = ZERO_VALUE;		break;
+				case ENU_TMR_CHANNEL_0:		TCCR0  = (TCCR0 & CLK_MASK_BIT) | ZERO_VALUE;		break;
+				case ENU_TMR_CHANNEL_1:		TCCR1B = (TCCR1B & CLK_MASK_BIT)| ZERO_VALUE;		break;
+				case ENU_TMR_CHANNEL_2:		TCCR2  = (TCCR2 & CLK_MASK_BIT) | ZERO_VALUE;		break;
 				default: 
 				{
 					// do nothing
@@ -1113,7 +1138,7 @@ enu_tmr_error_t timer_flag_notification	(enu_tmr_channel_id_t enu_tmr_channel_id
 							}
 							else
 							{
-								if(BIT_IS_SET(TIFR,OCF0) == LOGIC_TRUE)
+								if(BIT_IS_SET(TIFR,OCF0) == LOGIC_TRUE)	// in case compare flag
 								{
 									*ptr_u8_flag_status = LOGIC_TRUE;
 									SET_BIT(TIFR,OCF0);	//OCF0 is cleared by writing a logic one to the flag
