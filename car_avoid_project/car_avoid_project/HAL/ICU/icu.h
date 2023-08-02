@@ -22,10 +22,12 @@ typedef enum
 	ENU_ICU_NO_CLOCK		= 0 ,
 	ENU_ICU_F_CPU_CLOCK		= 1 ,
 	ENU_ICU_F_CPU_8			= 2 ,
-	ENU_ICU_F_CPU_64		= 3 ,
-	ENU_ICU_F_CPU_256		= 4 ,
-	ENU_ICU_F_CPU_1024		= 5 ,
-	ENU_ICU_MAX_CLOCK		= 6
+	ENU_ICU_F_CPU_32		= 3 ,
+	ENU_ICU_F_CPU_64		= 4 ,
+	ENU_ICU_F_CPU_128		= 5 ,
+	ENU_ICU_F_CPU_256		= 6 ,
+	ENU_ICU_F_CPU_1024		= 7 ,
+	ENU_ICU_MAX_CLOCK		= 8
 }enu_icu_clock_t;
 
 typedef enum

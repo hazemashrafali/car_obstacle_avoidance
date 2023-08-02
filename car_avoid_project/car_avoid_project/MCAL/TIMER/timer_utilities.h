@@ -21,7 +21,7 @@
 #define P_128				128
 #define P_256				256
 #define P_1024				1024
-#define NO_FIT_PRESCALER	2
+#define NO_FIT_PRESCALER	1500
 
 
 #define MAX_TMR_8_BIT_COUNT		256

@@ -9,21 +9,32 @@
 #include "MCAL/GLOBAL_INT/global_int.h"
 #include "HAL/LED/led.h"
 #include "HAL/BUTTON/button.h"
-	
+
+void fun (void)
+{
+	led_write(PORTD_ID,PIN6_ID,PIN_HIGH);
+	led_write(PORTD_ID,PIN7_ID,PIN_LOW);
+	timeOut_sec(2,4);
+}
+
+
 int main(void)
 {
 	uint8 flag = 0,count_flag=0;
 	led_init(PORTD_ID,PIN7_ID);
 	led_init(PORTD_ID,PIN6_ID);
-	timeOut_sec(2,2.5);
+	timeOut_sec(0,10);
+	//timer_callEvent_ms(1,3000,fun);
 	enable_global_interrupt();
     /* Replace with your application code */
     while (1) 
     {
-		timer_check_time_out_flag(2,&flag);
+		timer_check_time_out_flag(0,&flag);
 		if(flag == 1)
 		{
 			led_write(PORTD_ID,PIN7_ID,PIN_HIGH);
+			//timer_callEvent_ms(1,3000,fun);
+			
 			/*
 			count_flag++;
 			if(count_flag == 1)
