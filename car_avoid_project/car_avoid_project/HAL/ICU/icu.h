@@ -11,7 +11,7 @@
 
 /*===============FILE ENCLUTION ================*/
 #include "..\..\MCAL\EXT_INT\ext_interrupt.h"
-
+#include "..\..\MCAL\TIMER\timer_interface.h"
 /*===============EXTERNAL VARIBALS ================*/
 
 /*===============MACROS DEFINTION ================*/
@@ -67,7 +67,7 @@ typedef struct
 	enu_timer_channel_id_t	enu_timer_channel_id;
 	enu_icu_clock_t			enu_icu_clock;
 	enu_icu_edgetype_t		enu_icu_edgetype;
-}enu_icu_configtype_t;
+}str_icu_configtype_t;
 
 /*===============GLOBAL VARIBALS ================*/
 
@@ -76,7 +76,7 @@ typedef struct
 /**
  * @brief       Icu_init					: function used to initialize interrupt id , interrupt edge type , timer id and timer clock
  *
- * @param[in]   Config_Ptr					: pointer to structure of type enu_icu_configtype_t	
+ * @param[in]   Config_Ptr					: pointer to structure of type str_icu_configtype_t	
  *
  * @return      ENU_ICU_INVALID_EDGETYP		: in case of invalid interrupt edge type
  *              ENU_ICU_INVALID_CLOCK 		: in case of invalid timer clock 
@@ -84,7 +84,7 @@ typedef struct
  *				ENU_ICU_INVALID_CHANNEL		: in case of invalid interrupt channel id
  *				ENU_ICU_VALID				: in case of valid operation
  */
-enu_icu_error_t Icu_init(const enu_icu_configtype_t * Config_Ptr);
+enu_icu_error_t Icu_init(const str_icu_configtype_t * Config_Ptr);
 
 /**
  * @brief       Icu_setCallBack				: function used to set ICU callback function
