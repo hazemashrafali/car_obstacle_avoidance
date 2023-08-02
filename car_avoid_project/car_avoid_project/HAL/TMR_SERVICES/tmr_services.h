@@ -22,23 +22,20 @@ typedef enum{
 	}enu_time_error_t;
 /*===============MACROS DEFINTION ================*/
 #define MAX_TIMER_ID	3
-#define MAX_DELAY_US	5000
-#define MAX_DELAY_MS	5000
-#define MAX_DELAY_SEC	5000
 
 /*===============GLOBAL VARIBALS ================*/
 
 /*============= FUNCTION PROTOTYPE =============*/
-enu_time_error_t delay_us	(uint8 u8_timer_id,uint32 u32_time_delay);
-enu_time_error_t delay_ms	(uint8 u8_timer_id,uint32 u32_time_delay);
-enu_time_error_t delay_sec	(uint8 u8_timer_id,uint32 u32_time_delay);
-enu_time_error_t timeOut_us	(uint8 u8_timer_id,uint32 u32_time_delay);
-enu_time_error_t timeOut_ms	(uint8 u8_timer_id,uint32 u32_time_delay);
-enu_time_error_t timeOut_sec(uint8 u8_timer_id,uint32 u32_time_delay);
-enu_time_error_t timer_callEvent_us (uint8 u8_timer_id,uint32 u32_time_delay,void(*f_ptr)(void));
-enu_time_error_t timer_callEvent_ms (uint8 u8_timer_id,uint32 u32_time_delay,void(*f_ptr)(void));
-enu_time_error_t timer_callEvent_sec(uint8 u8_timer_id,uint32 u32_time_delay,void(*f_ptr)(void));
-
+enu_time_error_t delay_us	(uint8 u8_timer_id,float32 u32_time_delay);
+enu_time_error_t delay_ms	(uint8 u8_timer_id,float32 f32_time_delay);
+enu_time_error_t delay_sec	(uint8 u8_timer_id,float32 f32_time_delay);
+enu_time_error_t timeOut_us	(uint8 u8_timer_id,float32 f32_time_delay);
+enu_time_error_t timeOut_ms	(uint8 u8_timer_id,float32 f32_time_delay);
+enu_time_error_t timeOut_sec(uint8 u8_timer_id,float32 f32_time_delay);
+enu_time_error_t timer_callEvent_us (uint8 u8_timer_id,float32 f32_time_delay,void(*f_ptr)(void));
+enu_time_error_t timer_callEvent_ms (uint8 u8_timer_id,float32 f32_time_delay,void(*f_ptr)(void));
+enu_time_error_t timer_callEvent_sec(uint8 u8_timer_id,float32 f32_time_delay,void(*f_ptr)(void));
+enu_time_error_t timer_check_time_out_flag (uint8 u8_timer_id,uint8* ptr_u8_flag);
 
 
 

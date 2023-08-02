@@ -11,6 +11,7 @@
 
 #include "Std_Types.h"
 
+
 #define PORTA	(*((volatile uint8*)0x3B))
 #define DDRA	(*((volatile uint8*)0x3A))
 #define PINA	(*((volatile uint8*)0x39))
@@ -106,8 +107,10 @@
 #define ASSR	(*((volatile uint8*)0x42))
 #define SFIOR	(*((volatile uint8*)0x50))
 
+
 /*======timer0 pin names ====== */
 //TCCR0 timer counter control register
+
 #define CS00  0
 #define CS01  1
 #define CS02  2
@@ -137,6 +140,7 @@
 
 /*======timer1 pin names ====== */
 //Timer/Counter1 Control Register A – TCCR1A
+
 #define WGM10	0
 #define WGM11	1
 #define FOC1B	2
@@ -155,6 +159,7 @@
 #define ICNC1	7
 
 /*======timer2 pin names ====== */
+
 //Timer/Counter Control Register – TCCR2
 #define CS20	0
 #define CS21	1

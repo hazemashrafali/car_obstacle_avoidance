@@ -16,6 +16,8 @@ HAL\LED\led.c
 
 HAL\PWM\pwm.c
 
+HAL\TMR_SERVICES\tmr_services.c
+
 HAL\ULTRSONIC\ultrasonic.c
 
 main.c
@@ -27,4 +29,6 @@ MCAL\EXT_INT\ext_interrupt.c
 MCAL\GLOBAL_INT\global_int.c
 
 MCAL\TIMER\timer_interface.c
+
+MCAL\TIMER\timer_utilities.c
 

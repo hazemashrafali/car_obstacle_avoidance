@@ -39,6 +39,7 @@ SUBDIRS :=  \
 ../HAL/LCD \
 ../HAL/DC_MOTOR \
 ../HAL/ICU \
+../HAL/TMR_SERVICES \
 ../HAL/ULTRSONIC \
 ../HAL/PWM \
 ../MCAL \
@@ -59,12 +60,14 @@ C_SRCS +=  \
 ../HAL/LCD/lcd.c \
 ../HAL/LED/led.c \
 ../HAL/PWM/pwm.c \
+../HAL/TMR_SERVICES/tmr_services.c \
 ../HAL/ULTRSONIC/ultrasonic.c \
 ../main.c \
 ../MCAL/DIO/gpio.c \
 ../MCAL/EXT_INT/ext_interrupt.c \
 ../MCAL/GLOBAL_INT/global_int.c \
-../MCAL/TIMER/timer_interface.c
+../MCAL/TIMER/timer_interface.c \
+../MCAL/TIMER/timer_utilities.c
 
 
 PREPROCESSING_SRCS += 
@@ -81,12 +84,14 @@ HAL/ICU/icu.o \
 HAL/LCD/lcd.o \
 HAL/LED/led.o \
 HAL/PWM/pwm.o \
+HAL/TMR_SERVICES/tmr_services.o \
 HAL/ULTRSONIC/ultrasonic.o \
 main.o \
 MCAL/DIO/gpio.o \
 MCAL/EXT_INT/ext_interrupt.o \
 MCAL/GLOBAL_INT/global_int.o \
-MCAL/TIMER/timer_interface.o
+MCAL/TIMER/timer_interface.o \
+MCAL/TIMER/timer_utilities.o
 
 OBJS_AS_ARGS +=  \
 APP/app.o \
@@ -96,12 +101,14 @@ HAL/ICU/icu.o \
 HAL/LCD/lcd.o \
 HAL/LED/led.o \
 HAL/PWM/pwm.o \
+HAL/TMR_SERVICES/tmr_services.o \
 HAL/ULTRSONIC/ultrasonic.o \
 main.o \
 MCAL/DIO/gpio.o \
 MCAL/EXT_INT/ext_interrupt.o \
 MCAL/GLOBAL_INT/global_int.o \
-MCAL/TIMER/timer_interface.o
+MCAL/TIMER/timer_interface.o \
+MCAL/TIMER/timer_utilities.o
 
 C_DEPS +=  \
 APP/app.d \
@@ -111,12 +118,14 @@ HAL/ICU/icu.d \
 HAL/LCD/lcd.d \
 HAL/LED/led.d \
 HAL/PWM/pwm.d \
+HAL/TMR_SERVICES/tmr_services.d \
 HAL/ULTRSONIC/ultrasonic.d \
 main.d \
 MCAL/DIO/gpio.d \
 MCAL/EXT_INT/ext_interrupt.d \
 MCAL/GLOBAL_INT/global_int.d \
-MCAL/TIMER/timer_interface.d
+MCAL/TIMER/timer_interface.d \
+MCAL/TIMER/timer_utilities.d
 
 C_DEPS_AS_ARGS +=  \
 APP/app.d \
@@ -126,12 +135,14 @@ HAL/ICU/icu.d \
 HAL/LCD/lcd.d \
 HAL/LED/led.d \
 HAL/PWM/pwm.d \
+HAL/TMR_SERVICES/tmr_services.d \
 HAL/ULTRSONIC/ultrasonic.d \
 main.d \
 MCAL/DIO/gpio.d \
 MCAL/EXT_INT/ext_interrupt.d \
 MCAL/GLOBAL_INT/global_int.d \
-MCAL/TIMER/timer_interface.d
+MCAL/TIMER/timer_interface.d \
+MCAL/TIMER/timer_utilities.d
 
 OUTPUT_FILE_PATH +=car_avoid_project.elf
 
@@ -196,6 +207,13 @@ HAL/PWM/pwm.o: ../HAL/PWM/pwm.c
 	@echo Finished building: $<
 	
 
+HAL/TMR_SERVICES/tmr_services.o: ../HAL/TMR_SERVICES/tmr_services.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 HAL/ULTRSONIC/ultrasonic.o: ../HAL/ULTRSONIC/ultrasonic.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
@@ -232,6 +250,13 @@ MCAL/GLOBAL_INT/global_int.o: ../MCAL/GLOBAL_INT/global_int.c
 	
 
 MCAL/TIMER/timer_interface.o: ../MCAL/TIMER/timer_interface.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+MCAL/TIMER/timer_utilities.o: ../MCAL/TIMER/timer_utilities.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

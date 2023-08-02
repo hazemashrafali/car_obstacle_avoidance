@@ -17,7 +17,7 @@
 
 /*===============MACROS DEFINTION ================*/
 #define MAX_8_BIT_COUNT		256
-#define MAX_16_BIT_COUNT	65535
+#define MAX_16_BIT_COUNT	65536
 #define ZERO_VALUE			0
 #define LOGIC_TRUE			1
 #define LOGIC_FALSE			0
@@ -57,15 +57,15 @@ typedef enum
 {
 	ENU_TMR_NO_CLK			= 0,
 	ENU_TMR_CLK_1			= 1,
-	ENU_TMR_CLK_8			= 2,
-	ENU_TMR_CLK_32			= 3,
-	ENU_TMR_CLK_64			= 4,
-	ENU_TMR_CLK_128			= 5,
-	ENU_TMR_CLK_256			= 6,
-	ENU_TMR_CLK_1024		= 7,
-	ENU_TMR_CLK_EXT_FALLING	= 8,
-	ENU_TMR_CLK_EXT_RISING	= 9,
-	ENU_TMR_MAX_CLK			= 10 
+	ENU_TMR_CLK_8			= 8,
+	ENU_TMR_CLK_32			= 32,
+	ENU_TMR_CLK_64			= 64,
+	ENU_TMR_CLK_128			= 128,
+	ENU_TMR_CLK_256			= 256,
+	ENU_TMR_CLK_1024		= 1024,
+	ENU_TMR_CLK_EXT_FALLING	= 2,
+	ENU_TMR_CLK_EXT_RISING	= 3,
+	ENU_TMR_MAX_CLK			= 2000 
 }enu_tmr_clk_t;
 
 typedef struct

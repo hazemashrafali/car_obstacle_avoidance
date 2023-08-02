@@ -784,7 +784,7 @@ enu_tmr_error_t timer_start	(enu_tmr_channel_id_t enu_tmr_channel_id)
 							case ENU_TMR_CLK_64:			TCCR2 = (TCCR2 & CLK_MASK_BIT) |(1<<CS22);							break;
 							case ENU_TMR_CLK_128:			TCCR2 = (TCCR2 & CLK_MASK_BIT) |(1<<CS22)| (1<<CS20);				break;
 							case ENU_TMR_CLK_256:			TCCR2 = (TCCR2 & CLK_MASK_BIT) |(1<<CS22)| (1<<CS21);				break;
-							case ENU_TMR_CLK_1024:			TCCR2 = (TCCR2 & CLK_MASK_BIT) |(1<<CS22) | (1<<CS21)| (1<<CS20);	break;
+							case ENU_TMR_CLK_1024:			TCCR2 = (TCCR2 & CLK_MASK_BIT) |(1<<CS22)| (1<<CS21)| (1<<CS20);	break;
 							default:
 							{
 								//do nothing
@@ -1126,7 +1126,7 @@ enu_tmr_error_t timer_flag_notification	(enu_tmr_channel_id_t enu_tmr_channel_id
 						{
 							if(enu_tmr_mode == ENU_TMR_NORMAL_MODE)
 							{
-								if(BIT_IS_SET(TIFR,TOV0) == LOGIC_TRUE)
+								if(BIT_IS_SET(TIFR,TOV0))
 								{
 									*ptr_u8_flag_status = LOGIC_TRUE;
 									SET_BIT(TIFR,TOV0);	//TOV0 is cleared by writing a logic one to the flag
@@ -1138,7 +1138,7 @@ enu_tmr_error_t timer_flag_notification	(enu_tmr_channel_id_t enu_tmr_channel_id
 							}
 							else
 							{
-								if(BIT_IS_SET(TIFR,OCF0) == LOGIC_TRUE)	// in case compare flag
+								if(BIT_IS_SET(TIFR,OCF0))	// in case compare flag
 								{
 									*ptr_u8_flag_status = LOGIC_TRUE;
 									SET_BIT(TIFR,OCF0);	//OCF0 is cleared by writing a logic one to the flag
@@ -1154,7 +1154,7 @@ enu_tmr_error_t timer_flag_notification	(enu_tmr_channel_id_t enu_tmr_channel_id
 						{
 							if(enu_tmr_mode == ENU_TMR_NORMAL_MODE)
 							{
-								if(BIT_IS_SET(TIFR,TOV1) == LOGIC_TRUE)
+								if(BIT_IS_SET(TIFR,TOV1))
 								{
 									*ptr_u8_flag_status = LOGIC_TRUE;
 									SET_BIT(TIFR,TOV1);	//TOV1 is cleared by writing a logic one to the flag
@@ -1166,7 +1166,7 @@ enu_tmr_error_t timer_flag_notification	(enu_tmr_channel_id_t enu_tmr_channel_id
 							}
 							else
 							{
-								if(BIT_IS_SET(TIFR,OCF1A) == LOGIC_TRUE)
+								if(BIT_IS_SET(TIFR,OCF1A))
 								{
 									*ptr_u8_flag_status = LOGIC_TRUE;
 									SET_BIT(TIFR,OCF1A);	//OCF1A is cleared by writing a logic one to the flag
@@ -1182,7 +1182,7 @@ enu_tmr_error_t timer_flag_notification	(enu_tmr_channel_id_t enu_tmr_channel_id
 						{
 							if(enu_tmr_mode == ENU_TMR_NORMAL_MODE)
 							{
-								if(BIT_IS_SET(TIFR,TOV2) == LOGIC_TRUE)
+								if(BIT_IS_SET(TIFR,TOV2))
 								{
 									*ptr_u8_flag_status = LOGIC_TRUE;
 									SET_BIT(TIFR,TOV2);	//TOV2 is cleared by writing a logic one to the flag
@@ -1194,7 +1194,7 @@ enu_tmr_error_t timer_flag_notification	(enu_tmr_channel_id_t enu_tmr_channel_id
 							}
 							else
 							{
-								if(BIT_IS_SET(TIFR,OCF2) == LOGIC_TRUE)
+								if(BIT_IS_SET(TIFR,OCF2))
 								{
 									*ptr_u8_flag_status = LOGIC_TRUE;
 									SET_BIT(TIFR,OCF2);	//OCF2 is cleared by writing a logic one to the flag
