@@ -16,6 +16,8 @@
 
 /*===============MACROS DEFINTION ================*/
 
+/*===============GLOBAL VARIBALS ================*/
+
 /*===============TYBS DEFINTION ================*/
 typedef enum
 {
@@ -71,8 +73,6 @@ typedef struct
 	enu_icu_edgetype_t		enu_icu_edgetype;
 }str_icu_configtype_t;
 
-/*===============GLOBAL VARIBALS ================*/
-
 /*=========================APIS=========================*/
 
 /**
@@ -117,7 +117,7 @@ enu_icu_error_t Icu_setEdgeDetectionType(const enu_icu_edgetype_t enu_icu_edgety
 /**
  * @brief       Icu_getTimerValue			: function used to read timer value
  *
- * @param[in]   u16_timer_value				: pointer to uint16 used to hold timer value
+ * @param[in]   ptr_u16_timer_value			: pointer to uint16 used to hold timer value
  *
  * @return      ENU_ICU_INVALID_EDGETYP		: in case of invalid interrupt edge type
  *              ENU_ICU_INVALID_CLOCK 		: in case of invalid timer clock 
@@ -125,7 +125,7 @@ enu_icu_error_t Icu_setEdgeDetectionType(const enu_icu_edgetype_t enu_icu_edgety
  *				ENU_ICU_INVALID_CHANNEL		: in case of invalid interrupt channel id
  *				ENU_ICU_VALID				: in case of valid operation
  */
-enu_icu_error_t Icu_getTimerValue(uint16* u16_timer_value);
+enu_icu_error_t Icu_getTimerValue(uint16* ptr_u16_timer_value);
 
 /**
  * @brief       Icu_clearTimerValue			: function used to clear timer value
