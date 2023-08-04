@@ -34,5 +34,5 @@ enu_time_error_t timeOut_ms	(uint8 u8_timer_id,float32 f32_time_delay);
 enu_time_error_t timeOut_sec(uint8 u8_timer_id,float32 f32_time_delay);
 enu_time_error_t timer_callEvent_ms (uint8 u8_timer_id,float32 f32_time_delay,void(*f_ptr)(void));
 enu_time_error_t timer_check_time_out_flag (uint8 u8_timer_id,uint8* ptr_u8_flag);
-
+enu_tmr_clk_t	 timer_clk_map (uint16 u16_l_prescale);
 #endif /* TMR_SERVICES_H_ */

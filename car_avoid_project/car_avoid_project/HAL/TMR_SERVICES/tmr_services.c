@@ -14,7 +14,6 @@
 
 /*============= PRIVATE FUNCTION PROTOTYPE =============*/
 static volatile void timeOut_callBack (void);
-static enu_tmr_clk_t timer_clk_map(uint16 u16_l_prescale);
 
 /*===============GLOBAL VARIBALS ================*/
 static uint16 gl_u16_realPart[MAX_TIMER_ID]			= {ZERO_VALUE};
@@ -24,7 +23,7 @@ static uint8	gl_u8_timer_id						= MAX_TIMER_ID;
 static uint16	gl_u16_prescale[MAX_TIMER_ID]		= {ZERO_VALUE};
 static uint16	gl_u16_initialValue[MAX_TIMER_ID]	= {ZERO_VALUE};
 static BOOLEAN gl_bo_overFlow_flag[MAX_TIMER_ID]	= {FALSE};
-	
+
 void (*gl_fun_ptr_arr[MAX_TIMER_ID]) (void)			= {NULL_PTR};	
 
 /*============= FUNCTION PROTOTYPE =============*/
@@ -632,7 +631,7 @@ volatile void timeOut_callBack (void)
 	}
 }
 
-static enu_tmr_clk_t timer_clk_map(uint16 u16_l_prescale)
+enu_tmr_clk_t timer_clk_map(uint16 u16_l_prescale)
 {
 	enu_tmr_clk_t enu_tmr_clk = ENU_TMR_MAX_CLK;
 	switch(u16_l_prescale)

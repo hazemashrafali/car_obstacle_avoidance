@@ -10,6 +10,7 @@
 #include "HAL/ULTRSONIC/ultrasonic.h"
 #include "MCAL/EXT_INT/ext_interrupt.h"
 #include "util/delay.h"
+#include "HAL/PWM/pwm.h"
 
 void fun (void)
 {
@@ -18,25 +19,30 @@ void fun (void)
 
 int main(void)
 {
-/*
-	uint16 value = 0;
-	enu_icu_error_t enu_icu_error = ENU_ICU_VALID;
-	str_icu_configtype_t str_icu_configtype ={0,ULTRASONIC_TIME_ID,ENU_ICU_F_CPU_8,ENU_ICU_RISING};
-	enu_icu_error = Icu_init(&str_icu_configtype);
-	enu_icu_error = Icu_setCallBack(fun);
-	enu_icu_error = Icu_setEdgeDetectionType(ENU_ICU_FALLING);
-	enu_icu_error = Icu_getTimerValue(&value);
-	enu_icu_error = Icu_clearTimerValue();
-	Icu_DeInit();
+	uint16 value=0;
+	uint8 x = 0;
+	LCD_init();
+	Ultrasonic_init(PORTB_ID,5,ENU_ECHO_ID_0);
+	LCD_displayString("Distance = ");
+	PWM_Init(3,6,0);
+	enable_global_interrupt();
+	
 	while(1)
 	{
-		if (enu_icu_error == ENU_ICU_INVALID_INPUT)
+		for(x = 0;x<100;x++)
 		{
-			fun();
+			PWM_start(0,20,x);
+			delay_ms(2,5);	
 		}
+		Ultrasonic_readDistance(&value);
+		LCD_moveCursor(0,10);
+		LCD_intgerToString(value);
+		LCD_displayString(" CM ");
+		delay_ms(2,50);
 	}
-*/
-	
+
+	/*
+	//ULTRASONIC CODE
 	uint16 value=0;
 	LCD_init();
 	Ultrasonic_init(PORTB_ID,5,ENU_ECHO_ID_0);
@@ -51,5 +57,7 @@ int main(void)
 		//_delay_ms(200);
 		delay_ms(2,50);
 	}
+	*/
+	
 }
 
