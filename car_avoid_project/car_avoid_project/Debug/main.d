@@ -25,7 +25,8 @@ main.d main.o: .././main.c .././HAL/TMR_SERVICES/tmr_services.h \
  .././HAL/PWM/pwm.h .././HAL/PWM/..\..\MCAL\TIMER\timer_interface.h \
  .././HAL/PWM/..\..\MCAL\TIMER\timer_utilities.h \
  .././HAL/PWM/..\..\MCAL\TIMER\timer_interface.h \
- .././HAL/PWM/..\..\MCAL\DIO\gpio.h
+ .././HAL/PWM/..\..\MCAL\DIO\gpio.h .././HAL/DC_MOTOR/dc_motor.h \
+ .././HAL/DC_MOTOR/..\..\MCAL\DIO\gpio.h .././HAL/DC_MOTOR/..\PWM\pwm.h
 
 .././HAL/TMR_SERVICES/tmr_services.h:
 
@@ -88,3 +89,9 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 .././HAL/PWM/..\..\MCAL\TIMER\timer_interface.h:
 
 .././HAL/PWM/..\..\MCAL\DIO\gpio.h:
+
+.././HAL/DC_MOTOR/dc_motor.h:
+
+.././HAL/DC_MOTOR/..\..\MCAL\DIO\gpio.h:
+
+.././HAL/DC_MOTOR/..\PWM\pwm.h:

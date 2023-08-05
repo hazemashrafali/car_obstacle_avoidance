@@ -11,6 +11,7 @@
 #include "MCAL/EXT_INT/ext_interrupt.h"
 #include "util/delay.h"
 #include "HAL/PWM/pwm.h"
+#include "HAL/DC_MOTOR/dc_motor.h"
 
 void fun (void)
 {
@@ -19,6 +20,21 @@ void fun (void)
 
 int main(void)
 {
+	str_dcMotor_config_t str_dcMotor_config;
+	str_dcMotor_config.positive_terminal.port_id = PORTA_ID;
+	str_dcMotor_config.positive_terminal.pin_id	 = PIN1_ID;
+	str_dcMotor_config.negative_terminal.port_id = PORTA_ID;
+	str_dcMotor_config.negative_terminal.pin_id  = PIN2_ID;
+	str_dcMotor_config.enable_terminal.port_id	 = PORTA_ID;
+	str_dcMotor_config.enable_terminal.pin_id	 = PIN0_ID; 
+	dcMotor_init(&str_dcMotor_config);
+	enable_global_interrupt();
+	dcMotor_rotate(&str_dcMotor_config,ENU_DCMOTOR_ACW,10);
+	while(1)
+	{
+		fun();
+	}
+	/*
 	uint16 value=0;
 	uint8 x = 0;
 	LCD_init();
@@ -40,7 +56,7 @@ int main(void)
 		LCD_displayString(" CM ");
 		delay_ms(2,50);
 	}
-
+	*/
 	/*
 	//ULTRASONIC CODE
 	uint16 value=0;

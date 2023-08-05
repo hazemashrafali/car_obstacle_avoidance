@@ -18,8 +18,6 @@ static uint8	gs_u8_gpio_port_id		= ZERO_VALUE;
 static uint8	gs_u8_gpio_pin_id 		= ZERO_VALUE;
 static uint8	gs_u8_timer_id 			= ZERO_VALUE;
 static BOOLEAN	gs_bo_pwm_flag			= FALSE;
-static float32	gs_f32_on_time			= ZERO_VALUE;
-static float32	gs_f32_off_time			= ZERO_VALUE;
 static uint8 	gs_u8_duty_cycle		= ZERO_VALUE;
 
 static uint8	gs_u8_periodic_prescale	 = ZERO_VALUE;
@@ -107,8 +105,6 @@ enu_pwm_error_t PWM_start(uint8 u8_pwm_timer_id,uint32 u32_periodic_time,uint8 u
 		{
 			f32_off_time	= ((float32)u32_periodic_time*u8_duty_cycle)/MAX_DUTY_CYCLE;	//calculate on time delay
 			f32_on_time		= u32_periodic_time - f32_off_time;
-			gs_f32_on_time	= f32_on_time;
-			gs_f32_off_time = f32_off_time;
 			calc_prescaler(f32_off_time,u8_pwm_timer_id,ENU_MILLI_SECOND,&u16_offTime_prescale);
 			calc_prescaler(f32_on_time,u8_pwm_timer_id,ENU_MILLI_SECOND,&u16_onTime_prescale);
 			calc_initialValue(u8_pwm_timer_id,ENU_MILLI_SECOND,u16_offTime_prescale,f32_off_time,&gs_u16_offTime_initValue);
@@ -120,7 +116,6 @@ enu_pwm_error_t PWM_start(uint8 u8_pwm_timer_id,uint32 u32_periodic_time,uint8 u
 		}
 		else 
 		{
-			
 			calc_prescaler(u32_periodic_time,u8_pwm_timer_id,ENU_MILLI_SECOND,&u16_periodic_prescale);
 			calc_initialValue(u8_pwm_timer_id,ENU_MILLI_SECOND,u16_periodic_prescale,u32_periodic_time,&gs_u16_periodic_initValue);
 			gs_u8_periodic_prescale	= (uint8) timer_clk_map(u16_periodic_prescale);
@@ -162,7 +157,7 @@ enu_pwm_error_t PWM_stop(uint8 u8_pwm_timer_id)
 /* ============= PWM CALLBACK FUNCTION =============*/
 void PWM_callback (void)
 {
-	if((gs_u8_duty_cycle < MAX_DUTY_CYCLE) && ((gs_u8_duty_cycle > 0)))
+	if((gs_u8_duty_cycle < MAX_DUTY_CYCLE) && ((gs_u8_duty_cycle > ZERO_VALUE)))
 	{
 		DIO_togglePin(gs_u8_gpio_port_id,gs_u8_gpio_pin_id);
 		timer_stop(gs_u8_timer_id);
@@ -180,7 +175,7 @@ void PWM_callback (void)
 		}
 		timer_start(gs_u8_timer_id);
 	}
-	else if (gs_u8_duty_cycle == 100)
+	else if (gs_u8_duty_cycle == MAX_DUTY_CYCLE)
 	{
 		DIO_writePin(gs_u8_gpio_port_id,gs_u8_gpio_pin_id,PIN_HIGH);
 	}
