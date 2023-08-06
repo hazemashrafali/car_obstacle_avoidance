@@ -11,6 +11,9 @@
 /*============= FILE INCLUSION =============*/
 #include "..\..\MCAL\DIO\gpio.h"
 
+/*=========MACRO DEFINITIONS=========*/
+#define BTN_DEBOUNCE_MS		100
+
 /*============= TYPE DEFINITION =============*/
 typedef enum{
 	BTN_INVALID_OPERATION	=0,

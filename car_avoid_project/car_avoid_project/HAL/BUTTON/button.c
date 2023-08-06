@@ -7,6 +7,7 @@
 
 /*============= FILE INCLUSION =============*/
 #include "button.h"
+#include "util/delay.h"
 
 /*============= FUNCTION DEFINITIONS =============*/
 

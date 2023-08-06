@@ -581,9 +581,12 @@ enu_time_error_t timer_check_time_out_flag (uint8 u8_timer_id,uint8* ptr_u8_flag
 	if(u8_timer_id < MAX_ENU_TMR_CHANNEL)
 	{
 		if(ptr_u8_flag != NULL_PTR)
-		{		
-			*ptr_u8_flag = gl_bo_timeOut_flag[u8_timer_id];
-			gl_bo_timeOut_flag[u8_timer_id] = FALSE;	
+		{	
+			//if(gl_bo_timeOut_flag[u8_timer_id] == TRUE)
+			{
+				*ptr_u8_flag = gl_bo_timeOut_flag[u8_timer_id];
+				gl_bo_timeOut_flag[u8_timer_id] = FALSE;	
+			}
 		}
 		else
 		{

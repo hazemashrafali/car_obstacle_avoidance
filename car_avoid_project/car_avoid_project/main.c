@@ -5,13 +5,7 @@
  * Author : HAZEM-PC
  */ 
 
-#include "HAL/TMR_SERVICES/tmr_services.h"
-#include "HAL/LCD/lcd.h"
-#include "HAL/ULTRSONIC/ultrasonic.h"
-#include "MCAL/EXT_INT/ext_interrupt.h"
-#include "util/delay.h"
-#include "HAL/PWM/pwm.h"
-#include "HAL/DC_MOTOR/dc_motor.h"
+#include "APP/app.h"
 
 void fun (void)
 {
@@ -20,20 +14,29 @@ void fun (void)
 
 int main(void)
 {
-	str_dcMotor_config_t str_dcMotor_config;
-	str_dcMotor_config.positive_terminal.port_id = PORTA_ID;
-	str_dcMotor_config.positive_terminal.pin_id	 = PIN1_ID;
-	str_dcMotor_config.negative_terminal.port_id = PORTA_ID;
-	str_dcMotor_config.negative_terminal.pin_id  = PIN2_ID;
-	str_dcMotor_config.enable_terminal.port_id	 = PORTA_ID;
-	str_dcMotor_config.enable_terminal.pin_id	 = PIN0_ID; 
-	dcMotor_init(&str_dcMotor_config);
-	enable_global_interrupt();
-	dcMotor_rotate(&str_dcMotor_config,ENU_DCMOTOR_ACW,10);
+	uint16 distance;
+	enu_carEvents_t enu_carEvents = ENU_MAX_EV;
+	app_init();
+	//car_directionInit();
+	
+
 	while(1)
 	{
-		fun();
+		enu_carEvents = read_event(&distance);
+		display_event(enu_carEvents,distance);
+		delay_ms(2,500);
 	}
+
+	
+}
+
+
+
+
+
+
+
+
 	/*
 	uint16 value=0;
 	uint8 x = 0;
@@ -74,6 +77,3 @@ int main(void)
 		delay_ms(2,50);
 	}
 	*/
-	
-}
-

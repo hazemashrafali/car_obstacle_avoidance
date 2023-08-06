@@ -14,7 +14,7 @@
 #include "..\PWM\pwm.h"
 
 /*=========MACRO DEFINITIONS=========*/
-#define PWM_ID				0	//configuration parameter for the timer id used with PWM module, it should be [0-1-2]
+#define PWM_TIMER_ID		0	//configuration parameter for the timer id used with PWM module, it should be [0-1-2]
 #define PWM_PERIODIC_TIME	4	//configuration parameter to determine the periodic time of the generated PWM signal- defined in millisecond
 /*=========EXTERN VARIABLES=========*/
 

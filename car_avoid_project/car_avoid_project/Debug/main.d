@@ -1,97 +1,100 @@
-main.d main.o: .././main.c .././HAL/TMR_SERVICES/tmr_services.h \
- .././HAL/TMR_SERVICES/../../MCAL/TIMER/timer_interface.h \
- .././HAL/TMR_SERVICES/../../MCAL/TIMER/..\..\Utilities\Std_Types.h \
- .././HAL/TMR_SERVICES/../../MCAL/TIMER/..\..\Utilities\registers.h \
- .././HAL/TMR_SERVICES/../../MCAL/TIMER/..\..\Utilities\Std_Types.h \
- .././HAL/TMR_SERVICES/../../MCAL/TIMER/..\..\Utilities\Common_Macros.h \
- .././HAL/LCD/lcd.h .././HAL/LCD/..\..\MCAL\DIO\gpio.h \
- .././HAL/LCD/..\..\MCAL\DIO\..\..\Utilities\Common_Macros.h \
- .././HAL/LCD/..\..\MCAL\DIO\..\..\Utilities\Std_Types.h \
- .././HAL/LCD/..\..\MCAL\DIO\..\..\Utilities\registers.h \
- .././HAL/ULTRSONIC/ultrasonic.h .././HAL/ULTRSONIC/..\ICU\icu.h \
- .././HAL/ULTRSONIC/..\ICU\..\..\MCAL\EXT_INT\ext_interrupt.h \
- .././HAL/ULTRSONIC/..\ICU\..\..\MCAL\EXT_INT\..\..\Utilities\Std_Types.h \
- .././HAL/ULTRSONIC/..\ICU\..\..\MCAL\EXT_INT\..\..\Utilities\registers.h \
- .././HAL/ULTRSONIC/..\ICU\..\..\MCAL\EXT_INT\..\..\Utilities\Common_Macros.h \
- .././HAL/ULTRSONIC/..\ICU\..\..\MCAL\TIMER\timer_interface.h \
- .././HAL/ULTRSONIC/..\..\MCAL\DIO\gpio.h \
- .././MCAL/EXT_INT/ext_interrupt.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\inttypes.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdint.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdint.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
- .././HAL/PWM/pwm.h .././HAL/PWM/..\..\MCAL\TIMER\timer_interface.h \
- .././HAL/PWM/..\..\MCAL\TIMER\timer_utilities.h \
- .././HAL/PWM/..\..\MCAL\TIMER\timer_interface.h \
- .././HAL/PWM/..\..\MCAL\DIO\gpio.h .././HAL/DC_MOTOR/dc_motor.h \
- .././HAL/DC_MOTOR/..\..\MCAL\DIO\gpio.h .././HAL/DC_MOTOR/..\PWM\pwm.h
+main.d main.o: .././main.c .././APP/app.h \
+ .././APP/../MCAL/EXT_INT/ext_interrupt.h \
+ .././APP/../MCAL/EXT_INT/..\..\Utilities\Std_Types.h \
+ .././APP/../MCAL/EXT_INT/..\..\Utilities\registers.h \
+ .././APP/../MCAL/EXT_INT/..\..\Utilities\Std_Types.h \
+ .././APP/../MCAL/EXT_INT/..\..\Utilities\Common_Macros.h \
+ .././APP/../HAL/BUTTON/button.h \
+ .././APP/../HAL/BUTTON/..\..\MCAL\DIO\gpio.h \
+ .././APP/../HAL/BUTTON/..\..\MCAL\DIO\..\..\Utilities\Common_Macros.h \
+ .././APP/../HAL/BUTTON/..\..\MCAL\DIO\..\..\Utilities\Std_Types.h \
+ .././APP/../HAL/BUTTON/..\..\MCAL\DIO\..\..\Utilities\registers.h \
+ .././APP/../HAL/DC_MOTOR/dc_motor.h \
+ .././APP/../HAL/DC_MOTOR/..\..\MCAL\DIO\gpio.h \
+ .././APP/../HAL/DC_MOTOR/..\PWM\pwm.h \
+ .././APP/../HAL/DC_MOTOR/..\PWM\..\..\MCAL\TIMER\timer_interface.h \
+ .././APP/../HAL/DC_MOTOR/..\PWM\..\..\MCAL\TIMER\..\..\Utilities\Std_Types.h \
+ .././APP/../HAL/DC_MOTOR/..\PWM\..\..\MCAL\TIMER\..\..\Utilities\registers.h \
+ .././APP/../HAL/DC_MOTOR/..\PWM\..\..\MCAL\TIMER\..\..\Utilities\Common_Macros.h \
+ .././APP/../HAL/DC_MOTOR/..\PWM\..\..\MCAL\TIMER\timer_utilities.h \
+ .././APP/../HAL/DC_MOTOR/..\PWM\..\..\MCAL\TIMER\timer_interface.h \
+ .././APP/../HAL/DC_MOTOR/..\PWM\..\..\MCAL\DIO\gpio.h \
+ .././APP/../HAL/ULTRSONIC/ultrasonic.h \
+ .././APP/../HAL/ULTRSONIC/..\ICU\icu.h \
+ .././APP/../HAL/ULTRSONIC/..\ICU\..\..\MCAL\EXT_INT\ext_interrupt.h \
+ .././APP/../HAL/ULTRSONIC/..\ICU\..\..\MCAL\TIMER\timer_interface.h \
+ .././APP/../HAL/ULTRSONIC/..\..\MCAL\DIO\gpio.h \
+ .././APP/../HAL/LCD/lcd_config.h .././APP/../HAL/LCD/lcd.h \
+ .././APP/../HAL/LCD/..\..\MCAL\DIO\gpio.h \
+ .././APP/../HAL/TMR_SERVICES/tmr_services.h \
+ .././APP/../HAL/TMR_SERVICES/../../MCAL/TIMER/timer_interface.h \
+ .././APP/../HAL/LED/led.h .././APP/../HAL/LED/..\..\MCAL\DIO\gpio.h \
+ .././APP/app_config.h
 
-.././HAL/TMR_SERVICES/tmr_services.h:
+.././APP/app.h:
 
-.././HAL/TMR_SERVICES/../../MCAL/TIMER/timer_interface.h:
+.././APP/../MCAL/EXT_INT/ext_interrupt.h:
 
-.././HAL/TMR_SERVICES/../../MCAL/TIMER/..\..\Utilities\Std_Types.h:
+.././APP/../MCAL/EXT_INT/..\..\Utilities\Std_Types.h:
 
-.././HAL/TMR_SERVICES/../../MCAL/TIMER/..\..\Utilities\registers.h:
+.././APP/../MCAL/EXT_INT/..\..\Utilities\registers.h:
 
-.././HAL/TMR_SERVICES/../../MCAL/TIMER/..\..\Utilities\Std_Types.h:
+.././APP/../MCAL/EXT_INT/..\..\Utilities\Std_Types.h:
 
-.././HAL/TMR_SERVICES/../../MCAL/TIMER/..\..\Utilities\Common_Macros.h:
+.././APP/../MCAL/EXT_INT/..\..\Utilities\Common_Macros.h:
 
-.././HAL/LCD/lcd.h:
+.././APP/../HAL/BUTTON/button.h:
 
-.././HAL/LCD/..\..\MCAL\DIO\gpio.h:
+.././APP/../HAL/BUTTON/..\..\MCAL\DIO\gpio.h:
 
-.././HAL/LCD/..\..\MCAL\DIO\..\..\Utilities\Common_Macros.h:
+.././APP/../HAL/BUTTON/..\..\MCAL\DIO\..\..\Utilities\Common_Macros.h:
 
-.././HAL/LCD/..\..\MCAL\DIO\..\..\Utilities\Std_Types.h:
+.././APP/../HAL/BUTTON/..\..\MCAL\DIO\..\..\Utilities\Std_Types.h:
 
-.././HAL/LCD/..\..\MCAL\DIO\..\..\Utilities\registers.h:
+.././APP/../HAL/BUTTON/..\..\MCAL\DIO\..\..\Utilities\registers.h:
 
-.././HAL/ULTRSONIC/ultrasonic.h:
+.././APP/../HAL/DC_MOTOR/dc_motor.h:
 
-.././HAL/ULTRSONIC/..\ICU\icu.h:
+.././APP/../HAL/DC_MOTOR/..\..\MCAL\DIO\gpio.h:
 
-.././HAL/ULTRSONIC/..\ICU\..\..\MCAL\EXT_INT\ext_interrupt.h:
+.././APP/../HAL/DC_MOTOR/..\PWM\pwm.h:
 
-.././HAL/ULTRSONIC/..\ICU\..\..\MCAL\EXT_INT\..\..\Utilities\Std_Types.h:
+.././APP/../HAL/DC_MOTOR/..\PWM\..\..\MCAL\TIMER\timer_interface.h:
 
-.././HAL/ULTRSONIC/..\ICU\..\..\MCAL\EXT_INT\..\..\Utilities\registers.h:
+.././APP/../HAL/DC_MOTOR/..\PWM\..\..\MCAL\TIMER\..\..\Utilities\Std_Types.h:
 
-.././HAL/ULTRSONIC/..\ICU\..\..\MCAL\EXT_INT\..\..\Utilities\Common_Macros.h:
+.././APP/../HAL/DC_MOTOR/..\PWM\..\..\MCAL\TIMER\..\..\Utilities\registers.h:
 
-.././HAL/ULTRSONIC/..\ICU\..\..\MCAL\TIMER\timer_interface.h:
+.././APP/../HAL/DC_MOTOR/..\PWM\..\..\MCAL\TIMER\..\..\Utilities\Common_Macros.h:
 
-.././HAL/ULTRSONIC/..\..\MCAL\DIO\gpio.h:
+.././APP/../HAL/DC_MOTOR/..\PWM\..\..\MCAL\TIMER\timer_utilities.h:
 
-.././MCAL/EXT_INT/ext_interrupt.h:
+.././APP/../HAL/DC_MOTOR/..\PWM\..\..\MCAL\TIMER\timer_interface.h:
 
-c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h:
+.././APP/../HAL/DC_MOTOR/..\PWM\..\..\MCAL\DIO\gpio.h:
 
-c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\inttypes.h:
+.././APP/../HAL/ULTRSONIC/ultrasonic.h:
 
-c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdint.h:
+.././APP/../HAL/ULTRSONIC/..\ICU\icu.h:
 
-c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdint.h:
+.././APP/../HAL/ULTRSONIC/..\ICU\..\..\MCAL\EXT_INT\ext_interrupt.h:
 
-c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h:
+.././APP/../HAL/ULTRSONIC/..\ICU\..\..\MCAL\TIMER\timer_interface.h:
 
-c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h:
+.././APP/../HAL/ULTRSONIC/..\..\MCAL\DIO\gpio.h:
 
-.././HAL/PWM/pwm.h:
+.././APP/../HAL/LCD/lcd_config.h:
 
-.././HAL/PWM/..\..\MCAL\TIMER\timer_interface.h:
+.././APP/../HAL/LCD/lcd.h:
 
-.././HAL/PWM/..\..\MCAL\TIMER\timer_utilities.h:
+.././APP/../HAL/LCD/..\..\MCAL\DIO\gpio.h:
 
-.././HAL/PWM/..\..\MCAL\TIMER\timer_interface.h:
+.././APP/../HAL/TMR_SERVICES/tmr_services.h:
 
-.././HAL/PWM/..\..\MCAL\DIO\gpio.h:
+.././APP/../HAL/TMR_SERVICES/../../MCAL/TIMER/timer_interface.h:
 
-.././HAL/DC_MOTOR/dc_motor.h:
+.././APP/../HAL/LED/led.h:
 
-.././HAL/DC_MOTOR/..\..\MCAL\DIO\gpio.h:
+.././APP/../HAL/LED/..\..\MCAL\DIO\gpio.h:
 
-.././HAL/DC_MOTOR/..\PWM\pwm.h:
+.././APP/app_config.h:

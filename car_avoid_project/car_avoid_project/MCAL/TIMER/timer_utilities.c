@@ -157,7 +157,7 @@ BOOLEAN calc_prescaler(float32 f32_delay,enu_tmr_channel_id_t enu_tmr_channel_id
 		}
 		else if(enu_tmr_channel_id == ENU_TMR_CHANNEL_2)
 		{
-			if(f32_delay <= MAX_8_BIT_DELAY_US(P_1024) )
+			if(f32_delay <= MAX_8_BIT_DELAY_MS(P_1024) )
 			{
 				if(f32_delay <= MAX_8_BIT_DELAY_MS(P_1))
 				*ptr_u16_prescale=P_1;

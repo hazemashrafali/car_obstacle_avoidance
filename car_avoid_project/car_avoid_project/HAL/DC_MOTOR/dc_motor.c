@@ -36,7 +36,7 @@ enu_dcMotor_error_t dcMotor_init (str_dcMotor_config_t* str_dcMotor_config)
 			u8_l_returnValue = DIO_pinMode(str_dcMotor_config->negative_terminal.port_id, str_dcMotor_config->negative_terminal.pin_id, PIN_OUTPUT);
 			if(u8_l_returnValue == VALID)
 			{
-				u8_l_returnValue = PWM_Init(str_dcMotor_config->enable_terminal.port_id, str_dcMotor_config->enable_terminal.pin_id,PWM_ID);
+				u8_l_returnValue = PWM_Init(str_dcMotor_config->enable_terminal.port_id, str_dcMotor_config->enable_terminal.pin_id,PWM_TIMER_ID);
 				if(u8_l_returnValue == VALID)
 				{
 					DIO_writePin(str_dcMotor_config->positive_terminal.port_id, str_dcMotor_config->positive_terminal.pin_id, PIN_LOW);
@@ -66,9 +66,9 @@ enu_dcMotor_error_t dcMotor_init (str_dcMotor_config_t* str_dcMotor_config)
 enu_dcMotor_error_t dcMotor_rotate (str_dcMotor_config_t* str_dcMotor_config,enu_dcMotor_state_t enu_dcMotor_state,uint8 u8_dcMotor_speed)
 {
 	enu_dcMotor_error_t enu_dcMotor_error = ENU_DCMOTOR_VALID_OPERA;
-	if((str_dcMotor_config != NULL_PTR) && (enu_dcMotor_state < ENU_DCMOTOR_MAX_STATE) && (u8_dcMotor_speed < MAX_MOTOR_SPEED))
+	if((str_dcMotor_config != NULL_PTR) && (enu_dcMotor_state < ENU_DCMOTOR_MAX_STATE) && (u8_dcMotor_speed <= MAX_MOTOR_SPEED))
 	{
-		PWM_start(PWM_ID,PWM_PERIODIC_TIME,u8_dcMotor_speed);
+		PWM_start(PWM_TIMER_ID,PWM_PERIODIC_TIME,u8_dcMotor_speed);
 		if(enu_dcMotor_state == ENU_DCMOTOR_CW)
 		{
 			DIO_writePin(str_dcMotor_config->positive_terminal.port_id, str_dcMotor_config->positive_terminal.pin_id, PIN_HIGH);

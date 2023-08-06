@@ -139,6 +139,9 @@
     <Compile Include="APP\app.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="APP\app_config.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="HAL\BUTTON\button.c">
       <SubType>compile</SubType>
     </Compile>
