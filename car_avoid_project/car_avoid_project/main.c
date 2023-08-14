@@ -7,27 +7,25 @@
 
 #include "APP/app.h"
 
-void fun (void)
-{
-	
-}
-
 int main(void)
 {
-	uint16 distance;
-	enu_carEvents_t enu_carEvents = ENU_MAX_EV;
-	app_init();
-	//car_directionInit();
+	uint16 u16_obstacle_distance			= LOGIC_ZERO;
+	enu_carEvents_t enu_carEvents			= ENU_MAX_EV;
+	enu_carStates_t	enu_carStates			= ENU_MAX_ST;
+	enu_car_direction_t enu_car_direction	= ENU_STOP;
+	uint8 u8_car_speed						= SPEED_0_PERCENT;
 	
-
+	app_init();
+	
 	while(1)
 	{
-		enu_carEvents = read_event(&distance);
-		display_event(enu_carEvents,distance);
-		delay_ms(2,500);
+		enu_carEvents = read_event(&u16_obstacle_distance);
+		enu_carStates = car_stateMachine(enu_carEvents);
+		car_action(enu_carStates,&u8_car_speed,&enu_car_direction);
+		if(enu_carStates != ENU_PWR_OFF)
+			car_updtae_screen(ENU_PAGE_INFO,u16_obstacle_distance,u8_car_speed,enu_car_direction);
 	}
 
-	
 }
 
 

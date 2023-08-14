@@ -24,6 +24,7 @@
 typedef enum{
 	ENU_DCMOTOR_CW		= 0	,
 	ENU_DCMOTOR_ACW			,
+	ENU_DCMOTOR_BREAK		,
 	ENU_DCMOTOR_MAX_STATE
 	}enu_dcMotor_state_t;
 

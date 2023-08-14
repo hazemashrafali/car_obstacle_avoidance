@@ -74,10 +74,19 @@ enu_dcMotor_error_t dcMotor_rotate (str_dcMotor_config_t* str_dcMotor_config,enu
 			DIO_writePin(str_dcMotor_config->positive_terminal.port_id, str_dcMotor_config->positive_terminal.pin_id, PIN_HIGH);
 			DIO_writePin(str_dcMotor_config->negative_terminal.port_id, str_dcMotor_config->negative_terminal.pin_id, PIN_LOW);
 		}
-		else
+		else if(enu_dcMotor_state == ENU_DCMOTOR_ACW)
 		{
 			DIO_writePin(str_dcMotor_config->positive_terminal.port_id, str_dcMotor_config->positive_terminal.pin_id, PIN_LOW);
 			DIO_writePin(str_dcMotor_config->negative_terminal.port_id, str_dcMotor_config->negative_terminal.pin_id, PIN_HIGH);
+		}
+		else if(enu_dcMotor_state == ENU_DCMOTOR_BREAK)
+		{
+			DIO_writePin(str_dcMotor_config->positive_terminal.port_id, str_dcMotor_config->positive_terminal.pin_id, PIN_LOW);
+			DIO_writePin(str_dcMotor_config->negative_terminal.port_id, str_dcMotor_config->negative_terminal.pin_id, PIN_LOW);
+		}
+		else
+		{
+			//do nothing
 		}
 	}
 	else
@@ -95,6 +104,7 @@ enu_dcMotor_error_t dcMotor_stop (str_dcMotor_config_t* str_dcMotor_config)
 	enu_dcMotor_error_t enu_dcMotor_error = ENU_DCMOTOR_VALID_OPERA;
 	if(str_dcMotor_config != NULL_PTR)
 	{
+		//PWM_stop(PWM_TIMER_ID);
 		DIO_writePin(str_dcMotor_config->positive_terminal.port_id, str_dcMotor_config->positive_terminal.pin_id, PIN_LOW);
 		DIO_writePin(str_dcMotor_config->negative_terminal.port_id, str_dcMotor_config->negative_terminal.pin_id, PIN_LOW);
 	}

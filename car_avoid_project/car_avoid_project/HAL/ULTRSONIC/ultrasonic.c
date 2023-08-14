@@ -7,7 +7,7 @@
 /*============= FILE INCLUSION =============*/
 #include "ultrasonic.h"
 #include "..\TMR_SERVICES\tmr_services.h"
-
+#include "util/delay.h"
 /*============= MACRO DEFINITION =============*/
 #define NUM_OF_EDGES		2
 #define DELAY_ID			2
@@ -78,7 +78,8 @@ enu_usonic_state_t Ultrasonic_init(uint8 u8_triggerPort,uint8 u8_triggerPin,enu_
 void Ultrasonic_Trigger(void)
 {
 	DIO_writePin(gl_u8_triggerPort, gl_u8_triggerPin,PIN_HIGH);
-	delay_us(DELAY_ID,TRIGGER_TIME);
+	_delay_us(20);
+//	delay_us(DELAY_ID,TRIGGER_TIME);
 	DIO_writePin(gl_u8_triggerPort, gl_u8_triggerPin,PIN_LOW);
 }
 
