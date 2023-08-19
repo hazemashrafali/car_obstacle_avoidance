@@ -15,7 +15,7 @@ car_obstacle_avoidance
 ![car_avoid_state_machine drawio](https://github.com/hazemashrafali/car_obstacle_avoidance/assets/102700625/8c3d27f5-e9e8-437a-a768-2866d368a3b9)
 
 
-### **4.car flasher schematic diagram**
+### **4.Protues schematic diagram**
 ![wiring](https://github.com/hazemashrafali/car_obstacle_avoidance/assets/102700625/47f3d741-53b7-42f6-bb77-dff43f10e16c)
 
 
