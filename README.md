@@ -1,5 +1,4 @@
 # car_obstacle_avoidance
-car_obstacle_avoidance
 > ## **Suppose you have a four-diving wheel robot, you are required to design the system so that the robot avoid any object in front.**
 
 
